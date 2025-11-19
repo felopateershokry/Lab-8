@@ -125,4 +125,52 @@ public class JsonDatabaseManager {
         }
     }
 
+    public int generateCourseId() {
+
+        List<Course> courses = loadCourses();
+
+        if (courses == null || courses.isEmpty()) {
+            return 1;
+        }
+
+        int maxId = 0;
+        for (Course c : courses) {
+            if (c.getId() > maxId) {
+                maxId = c.getId();
+            }
+        }
+
+        return maxId + 1;
+    }
+
+    public int generateLessonId(int courseId) {
+        List<Course> courses = loadCourses();
+
+        Course course = null;
+        for (Course c : courses) {
+            if (c.getId() == courseId) {
+                course = c;
+                break;
+            }
+        }
+
+        if (course == null) {
+            return 1;
+        }
+
+        List<Lesson> lessons = course.getLessons();
+        if (lessons == null || lessons.isEmpty()) {
+            return 1;
+        }
+
+        int maxId = 0;
+        for (Lesson l : lessons) {
+            if (l.getId() > maxId) {
+                maxId = l.getId();
+            }
+        }
+
+        return maxId + 1;
+    }
+
 }

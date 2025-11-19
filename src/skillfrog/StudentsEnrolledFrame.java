@@ -4,6 +4,14 @@
  */
 package skillfrog;
 
+import java.util.List;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import skillfrog.Tables.CourseEnrollmentManager;
+import skillfrog.Tables.LoadInstructorCoursesToTable;
+
 /**
  *
  * @author Lenovo
@@ -22,6 +30,20 @@ public class StudentsEnrolledFrame extends javax.swing.JFrame {
         Instructor i = (Instructor) Session.loggedUser;
         CourseEnrollmentManager.loadEnrollments("courses.json", "users.json", i.getUserId());
         jTable2.setModel(CourseEnrollmentManager.tableModel);
+
+        TableRowSorter<DefaultTableModel> sorter
+                = new TableRowSorter<>(CourseEnrollmentManager.tableModel);
+
+        sorter.setComparator(0, (o1, o2) -> {
+            int id1 = Integer.parseInt(o1.toString());
+            int id2 = Integer.parseInt(o2.toString());
+            return Integer.compare(id1, id2);
+        });
+
+        jTable2.setRowSorter(sorter);
+
+        sorter.setSortKeys(List.of(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
+        sorter.sort();
     }
 
     /**

@@ -13,10 +13,6 @@ public class CourseService {
         this.courses = repo.loadCourses();
     }
 
-    CourseService() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     public boolean createCourse(Course c, Instructor instructor) {
 
         if (courseExists(c.getId())) {
@@ -167,7 +163,4 @@ public class CourseService {
         return courses;
     }
 
-    List<String> getEnrolledStudents(int courseId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

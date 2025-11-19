@@ -4,8 +4,9 @@
     "title": "lll",
     "description": "fffff",
     "lessons": [{ "id": 1, "title": "fwgryth", "content": "gerhjjt" }],
-    "enrolledStudents": ["15"],
-    "instructorId": 0
+    "enrolledStudents": [],
+    "approvalStatus": "PENDING",
+    "instructorId": 7
   },
   {
     "id": 2,
@@ -13,78 +14,85 @@
     "description": "ewew",
     "lessons": [{ "id": 1, "title": "fgggg", "content": "hdhfd" }],
     "enrolledStudents": [],
-    "instructorId": 0
+    "approvalStatus": "PENDING",
+    "instructorId": 7
   },
   {
     "id": 3,
     "title": "felo",
     "description": "cfewerg",
     "lessons": [],
-    "enrolledStudents": ["15"],
-    "approvalStatus": "pending",
-    "instructorId": 0
-  },
-  {
-    "id": 12,
-    "title": "i;ljk",
-    "description": "hgnf",
-    "lessons": [{ "id": 1, "title": "hbdfb", "content": "dasfe" }],
     "enrolledStudents": [],
-    "approvalStatus": "REJECTED",
-    "instructorId": 0
+    "approvalStatus": "PENDING",
+    "instructorId": 7
   },
   {
     "id": 4,
     "title": "twe",
     "description": "reww",
-    "lessons": [{ "id": 9, "title": "mg", "content": "jnhfj" }],
-    "enrolledStudents": ["13"],
-    "approvalStatus": "pending",
-    "instructorId": 10
+    "lessons": [{ "id": 1, "title": "mg", "content": "jnhfj" }],
+    "enrolledStudents": [],
+    "approvalStatus": "PENDING",
+    "instructorId": 7
   },
   {
-    "id": 100,
+    "id": 5,
     "title": "vdsv",
     "description": "sdvd",
-    "lessons": [{ "id": 6, "title": "vfv", "content": "vfv" }],
+    "lessons": [{ "id": 1, "title": "vfv", "content": "vfv" }],
     "enrolledStudents": [],
-    "approvalStatus": "APPROVED",
-    "instructorId": 11
+    "approvalStatus": "PENDING",
+    "instructorId": 8
   },
   {
-    "id": 99,
+    "id": 6,
     "title": "ppp",
     "description": "pppp",
     "lessons": [],
-    "enrolledStudents": ["12"],
-    "approvalStatus": "APPROVED",
-    "instructorId": 11
+    "enrolledStudents": [],
+    "approvalStatus": "PENDING",
+    "instructorId": 8
   },
   {
-    "id": 10,
+    "id": 7,
     "title": "c10",
     "description": "c1010",
     "lessons": [],
     "enrolledStudents": [],
     "approvalStatus": "PENDING",
-    "instructorId": 14
+    "instructorId": 11
   },
   {
-    "id": 20,
+    "id": 8,
     "title": "c12",
     "description": "c20",
     "lessons": [],
     "enrolledStudents": [],
     "approvalStatus": "REJECTED",
-    "instructorId": 14
+    "instructorId": 11
   },
   {
-    "id": 200,
+    "id": 9,
     "title": "test",
     "description": "testing",
     "lessons": [],
-    "enrolledStudents": ["15"],
+    "enrolledStudents": [],
+    "approvalStatus": "PENDING",
+    "instructorId": 11
+  },
+  {
+    "id": 10,
+    "title": "English",
+    "description": "English Description",
+    "lessons": [
+      { "id": 1, "title": "A1", "content": "A1A1" },
+      { "id": 2, "title": "A2", "content": "A2A2" },
+      { "id": 3, "title": "B1", "content": "B1B1" },
+      { "id": 4, "title": "B2", "content": "B2B2" },
+      { "id": 5, "title": "C1", "content": "C1C1" }
+    ],
+    "enrolledStudents": ["9"],
     "approvalStatus": "APPROVED",
-    "instructorId": 14
+    "instructorId": 7
   }
 ]

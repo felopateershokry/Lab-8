@@ -21,6 +21,9 @@ public class AddCourseFrame extends javax.swing.JFrame {
     public AddCourseFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
+        int newId = db.generateCourseId();
+        jCourseId.setText(String.valueOf(newId));
+        jCourseId.setEditable(false);
     }
 
     /**
@@ -165,12 +168,11 @@ public class AddCourseFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jCourseIdActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        String CourseId = jCourseId.getText();
         String CourseTitle = jCourseTitle.getText();
         String CourseDis = jCourseDiscreption.getText();
 
         int id;
-        id = Integer.parseInt(CourseId);
+        id = Integer.parseInt(jCourseId.getText());
         if (id < 1) {
             JOptionPane.showMessageDialog(this, "Invalid id", "Error", JOptionPane.ERROR_MESSAGE);
             return;

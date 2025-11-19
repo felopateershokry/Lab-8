@@ -65,16 +65,23 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
         btnEnrolled.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnEnrolled.addActionListener(e -> showEnrolledCourses());
 
+        JButton btnLogout = new JButton("Logout");
+        btnLogout.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnLogout.addActionListener(e -> logout());
+
         sideBar.add(Box.createVerticalStrut(20));
         sideBar.add(btnAvailable);
         sideBar.add(Box.createVerticalStrut(10));
         sideBar.add(btnEnrolled);
+        sideBar.add(Box.createVerticalStrut(10));
+        sideBar.add(btnLogout);
 
         mainPanel.add(sideBar, BorderLayout.WEST);
 
         contentArea = new JPanel(new BorderLayout());
         contentArea.setBackground(new Color(0xf5f5f5));
         mainPanel.add(contentArea, BorderLayout.CENTER);
+
     }
 
     public void showAvailableCourses() {
@@ -121,6 +128,22 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
         contentArea.add(scrollPane, BorderLayout.CENTER);
         contentArea.revalidate();
         contentArea.repaint();
+    }
+
+    public void logout() {
+        // يسأل المستخدم قبل تسجيل الخروج
+        int confirm = JOptionPane.showConfirmDialog(
+                this, // Frame الحالي
+                "Are you sure you want to logout?",
+                "Logout",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        // إذا ضغط نعم → يغلق الفورم الحالي ويفتح LoginFrame
+        if (confirm == JOptionPane.YES_OPTION) {
+            dispose(); // يغلق الفورم الحالي
+            new Login().setVisible(true); // يفتح شاشة تسجيل الدخول
+        }
     }
 
     public void showLessons(Course course) {
