@@ -146,33 +146,45 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
         }
     }
 
-    public void showLessons(Course course) {
-        List<Lesson> lessons = course.getLessons();
-        if (lessons == null || lessons.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No lessons added yet!");
-            return;
-        }
-
-        JPanel container = new JPanel();
-        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
-        container.setBackground(new Color(0xf5f5f5));
-
-        for (Lesson l : lessons) {
-            JPanel lessonPanel = UIFactory.createLessonPanel(
-                    l, studentId, studentService, this, course.getId()
-            );
-            container.add(lessonPanel);
-            container.add(Box.createRigidArea(new Dimension(0, 10)));
-        }
-
-        JScrollPane scrollPane = new JScrollPane(container);
-        scrollPane.setBorder(null);
-
-        contentArea.removeAll();
-        contentArea.add(scrollPane, BorderLayout.CENTER);
-        contentArea.revalidate();
-        contentArea.repaint();
+public void showLessons(Course course) {
+    List<Lesson> lessons = course.getLessons();
+    if (lessons == null || lessons.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "No lessons added yet!");
+        return;
     }
+
+    JPanel container = new JPanel();
+    container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+    container.setBackground(new Color(0xf5f5f5));
+
+    for (int i = 0; i < lessons.size(); i++) {
+        Lesson l = lessons.get(i);
+
+        // Check if previous lesson's quiz is passed
+        if (i > 0) {
+            Lesson prevLesson = lessons.get(i - 1);
+            boolean prevPassed = studentService.hasPassedQuiz(studentId, course.getId(),prevLesson.getId());
+            if (!prevPassed) {
+                // Skip this lesson until previous quiz passed
+                continue;
+            }
+        }
+
+        JPanel lessonPanel = UIFactory.createLessonPanel(
+                l, studentId, studentService, this, course.getId()
+        );
+        container.add(lessonPanel);
+        container.add(Box.createRigidArea(new Dimension(0, 10)));
+    }
+
+    JScrollPane scrollPane = new JScrollPane(container);
+    scrollPane.setBorder(null);
+
+    contentArea.removeAll();
+    contentArea.add(scrollPane, BorderLayout.CENTER);
+    contentArea.revalidate();
+    contentArea.repaint();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.

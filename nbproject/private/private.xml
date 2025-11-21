@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/java_labs/Lab-8-Felopateer-Shokry/src/skillfrog/Login.java</file>
+            <file>file:/D:/java_labs/Lab-8-Felopateer-Shokry/src/skillfrog/QuizFrame.java</file>
+            <file>file:/D:/java_labs/Lab-8-Felopateer-Shokry/src/skillfrog/Quiz.java</file>
+            <file>file:/D:/java_labs/Lab-8-Felopateer-Shokry/src/skillfrog/StudentService.java</file>
+            <file>file:/D:/java_labs/Lab-8-Felopateer-Shokry/src/skillfrog/Student.java</file>
+            <file>file:/D:/java_labs/Lab-8-Felopateer-Shokry/src/skillfrog/Lesson.java</file>
+            <file>file:/D:/java_labs/Lab-8-Felopateer-Shokry/src/skillfrog/UIFactory.java</file>
+        </group>
     </open-files>
 </project-private>
