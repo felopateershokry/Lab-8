@@ -194,4 +194,8 @@ public class JsonDatabaseManager {
         }
         return result;
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }

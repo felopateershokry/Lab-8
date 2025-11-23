@@ -9,6 +9,7 @@
         "title": "Intro",
         "content": "Java intro content",
         "quiz": {
+<<<<<<< Updated upstream
           "questions": ["Q1", "Q2", "Q3"],
           "options": [
             ["A", "B", "C"],
@@ -16,6 +17,14 @@
             ["X", "Y", "Z"]
           ],
           "correct": [0, 0, 0],
+=======
+          "questions": ["Q1", "Q2"],
+          "options": [
+            ["A", "B", "C"],
+            ["X", "Y", "Z"]
+          ],
+          "correct": [0, 2],
+>>>>>>> Stashed changes
           "retryOption": true
         }
       },
@@ -32,11 +41,21 @@
           "correct": [1, 0],
           "retryOption": true
         }
+<<<<<<< Updated upstream
       }
     ],
     "enrolledStudents": ["22", "22", "14", "14", "14", "14", "14", "18"],
     "approvalStatus": "approved",
     "instructorId": 0
+=======
+      },
+      { "id": 3, "title": "English", "content": "English B4" },
+      { "id": 4, "title": "Englishttt", "content": "Englishttt fefe" }
+    ],
+    "enrolledStudents": ["14"],
+    "approvalStatus": "approved",
+    "instructorId": 7
+>>>>>>> Stashed changes
   },
   {
     "id": 102,
@@ -48,6 +67,7 @@
         "title": "Intro",
         "content": "Python intro content",
         "quiz": {
+<<<<<<< Updated upstream
           "questions": ["Q1", "Q2", "Q3"],
           "options": [
             ["A", "B", "C"],
@@ -55,6 +75,14 @@
             ["X", "Y", "Z"]
           ],
           "correct": [2, 1, 1],
+=======
+          "questions": ["Q1", "Q2"],
+          "options": [
+            ["A", "B", "C"],
+            ["X", "Y", "Z"]
+          ],
+          "correct": [2, 1],
+>>>>>>> Stashed changes
           "retryOption": true
         }
       },
@@ -73,6 +101,7 @@
         }
       }
     ],
+<<<<<<< Updated upstream
     "enrolledStudents": [
       "1",
       "22",
@@ -86,11 +115,15 @@
       "18",
       "19"
     ],
+=======
+    "enrolledStudents": ["1", "22", "14", "15"],
+>>>>>>> Stashed changes
     "approvalStatus": "approved",
     "instructorId": 0
   },
   {
     "id": 103,
+<<<<<<< Updated upstream
     "title": "dfS",
     "description": "dasf",
     "lessons": [
@@ -216,12 +249,66 @@
             ["A", "B", "C"],
             ["X", "Y", "Z"],
             ["X", "Y", "Z"]
+=======
+    "title": "English",
+    "description": "A1",
+    "lessons": [
+      { "id": 1, "title": "A1", "content": "A11" },
+      { "id": 2, "title": "A2", "content": "A22" }
+    ],
+    "enrolledStudents": ["15"],
+    "approvalStatus": "APPROVED",
+    "instructorId": 7
+  },
+  {
+    "id": 104,
+    "title": "zaytona",
+    "description": "the best mo3id",
+    "lessons": [
+      { "id": 20, "title": "hkasgdhj", "content": "asdasdasd" },
+      { "id": 21, "title": "adhksjgvad", "content": "adgh;ajkl" }
+    ],
+    "enrolledStudents": ["17", "18"],
+    "approvalStatus": "APPROVED",
+    "instructorId": 16
+  },
+  {
+    "id": 105,
+    "title": "the quiz test",
+    "description": "sgdhjkgasd",
+    "lessons": [
+      {
+        "id": 40,
+        "title": "asdas",
+        "content": "asdasd",
+        "quiz": {
+          "questions": ["Q3", "Q4"],
+          "options": [
+            ["7", "8", "9"],
+            ["10", "11", "12"]
+          ],
+          "correct": [0, 0],
+          "retryOption": true
+        }
+      },
+      {
+        "id": 41,
+        "title": "sdajhklasd",
+        "content": "ffsadfasfsa",
+        "quiz": {
+          "questions": ["Q3", "Q4", "Q4"],
+          "options": [
+            ["7", "8", "9"],
+            ["10", "11", "12"],
+            ["1455", "1321", "152"]
+>>>>>>> Stashed changes
           ],
           "correct": [0, 0, 0],
           "retryOption": true
         }
       },
       {
+<<<<<<< Updated upstream
         "id": 11,
         "title": "asdasdas",
         "content": "dasdasd",
@@ -231,14 +318,31 @@
             ["A", "B", "C"],
             ["X", "Y", "Z"],
             ["X", "Y", "Z"]
+=======
+        "id": 42,
+        "title": "asdasdsdfgs",
+        "content": "agggfdgsdg",
+        "quiz": {
+          "questions": ["Q3", "Q4", "Q4"],
+          "options": [
+            ["7", "8", "9"],
+            ["10", "11", "12"],
+            ["1455", "1321", "152"]
+>>>>>>> Stashed changes
           ],
           "correct": [0, 0, 0],
           "retryOption": true
         }
       }
     ],
+<<<<<<< Updated upstream
     "enrolledStudents": ["21", "22"],
     "approvalStatus": "APPROVED",
     "instructorId": 20
+=======
+    "enrolledStudents": ["17", "18", "14"],
+    "approvalStatus": "APPROVED",
+    "instructorId": 16
+>>>>>>> Stashed changes
   }
 ]

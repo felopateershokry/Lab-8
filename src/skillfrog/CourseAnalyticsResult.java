@@ -4,7 +4,10 @@
  */
 package skillfrog;
 
+<<<<<<< Updated upstream
 import java.util.HashMap;
+=======
+>>>>>>> Stashed changes
 import java.util.Map;
 
 /**

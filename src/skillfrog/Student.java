@@ -130,6 +130,7 @@ public class Student extends User {
         quizAttempts.put(courseId, courseAttempts);
     }
 
+<<<<<<< Updated upstream
     public void recordQuizScore(String courseId, String lessonId, int score) {
         HashMap<String, Integer> scores = quizScore.getOrDefault(courseId, new HashMap<>());
         scores.put(lessonId, score);
@@ -140,6 +141,8 @@ public class Student extends User {
         markLessonCompleted(courseId, lessonId);
     }
 
+=======
+>>>>>>> Stashed changes
     public int getCompletedLessonsCount(String courseId) {
         if (!progress.containsKey(courseId)) {
             return 0;
