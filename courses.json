@@ -1,0 +1,244 @@
+[
+  {
+    "id": 101,
+    "title": "Java Basics",
+    "description": "Intro to Java",
+    "lessons": [
+      {
+        "id": 1,
+        "title": "Intro",
+        "content": "Java intro content",
+        "quiz": {
+          "questions": ["Q1", "Q2", "Q3"],
+          "options": [
+            ["A", "B", "C"],
+            ["X", "Y", "Z"],
+            ["X", "Y", "Z"]
+          ],
+          "correct": [0, 0, 0],
+          "retryOption": true
+        }
+      },
+      {
+        "id": 2,
+        "title": "Variables",
+        "content": "Java variables content",
+        "quiz": {
+          "questions": ["Q3", "Q4"],
+          "options": [
+            ["1", "2", "3"],
+            ["4", "5", "6"]
+          ],
+          "correct": [1, 0],
+          "retryOption": true
+        }
+      }
+    ],
+    "enrolledStudents": ["22", "22", "14", "14", "14", "14", "14", "18"],
+    "approvalStatus": "approved",
+    "instructorId": 0
+  },
+  {
+    "id": 102,
+    "title": "Python Basics",
+    "description": "Intro to Python",
+    "lessons": [
+      {
+        "id": 1,
+        "title": "Intro",
+        "content": "Python intro content",
+        "quiz": {
+          "questions": ["Q1", "Q2", "Q3"],
+          "options": [
+            ["A", "B", "C"],
+            ["X", "Y", "Z"],
+            ["X", "Y", "Z"]
+          ],
+          "correct": [2, 1, 1],
+          "retryOption": true
+        }
+      },
+      {
+        "id": 2,
+        "title": "Data Types",
+        "content": "Python data types content",
+        "quiz": {
+          "questions": ["Q3", "Q4"],
+          "options": [
+            ["7", "8", "9"],
+            ["10", "11", "12"]
+          ],
+          "correct": [1, 0],
+          "retryOption": false
+        }
+      }
+    ],
+    "enrolledStudents": [
+      "1",
+      "22",
+      "22",
+      "14",
+      "14",
+      "14",
+      "14",
+      "14",
+      "16",
+      "18",
+      "19"
+    ],
+    "approvalStatus": "approved",
+    "instructorId": 0
+  },
+  {
+    "id": 103,
+    "title": "dfS",
+    "description": "dasf",
+    "lessons": [
+      {
+        "id": 1,
+        "title": "asdasd",
+        "content": "asdasda",
+        "quiz": {
+          "questions": ["Q1", "Q2"],
+          "options": [
+            ["A", "B", "C"],
+            ["X", "Y", "Z"]
+          ],
+          "correct": [2, 1],
+          "retryOption": true
+        }
+      },
+      {
+        "id": 2,
+        "title": "asdadasda",
+        "content": "asdxzzxc",
+        "quiz": {
+          "questions": ["Q1", "Q2"],
+          "options": [
+            ["A", "B", "C"],
+            ["X", "Y", "Z"]
+          ],
+          "correct": [2, 1],
+          "retryOption": true
+        }
+      },
+      {
+        "id": 3,
+        "title": "sdasdas",
+        "content": "dasdasd",
+        "quiz": {
+          "questions": ["Q1", "Q2"],
+          "options": [
+            ["A", "B", "C"],
+            ["X", "Y", "Z"]
+          ],
+          "correct": [2, 1],
+          "retryOption": true
+        }
+      },
+      {
+        "id": 4,
+        "title": "qwewqe",
+        "content": "qweqweq",
+        "quiz": {
+          "questions": ["Q1", "Q2"],
+          "options": [
+            ["A", "B", "C"],
+            ["X", "Y", "Z"]
+          ],
+          "correct": [2, 1],
+          "retryOption": true
+        }
+      },
+      {
+        "id": 5,
+        "title": "hihi",
+        "content": "ssadas",
+        "quiz": {
+          "questions": ["Q1", "Q2"],
+          "options": [
+            ["A", "B", "C"],
+            ["X", "Y", "Z"]
+          ],
+          "correct": [2, 1],
+          "retryOption": true
+        }
+      },
+      {
+        "id": 6,
+        "title": "qwsdsfsewqe",
+        "content": "qwsdafseqweq",
+        "quiz": {
+          "questions": ["Q1", "Q2"],
+          "options": [
+            ["A", "B", "C"],
+            ["X", "Y", "Z"]
+          ],
+          "correct": [2, 1],
+          "retryOption": true
+        }
+      }
+    ],
+    "enrolledStudents": ["16", "17", "18", "19"],
+    "approvalStatus": "APPROVED",
+    "instructorId": 15
+  },
+  {
+    "id": 104,
+    "title": "dasfsd",
+    "description": "sdfsd",
+    "lessons": [],
+    "enrolledStudents": ["16"],
+    "approvalStatus": "APPROVED",
+    "instructorId": 15
+  },
+  {
+    "id": 105,
+    "title": "asdfsa",
+    "description": "sadfsafsf",
+    "lessons": [],
+    "enrolledStudents": ["16"],
+    "approvalStatus": "APPROVED",
+    "instructorId": 15
+  },
+  {
+    "id": 106,
+    "title": "maths",
+    "description": "the best course in the word",
+    "lessons": [
+      {
+        "id": 10,
+        "title": "asdasd",
+        "content": "asdadasd",
+        "quiz": {
+          "questions": ["Q1", "Q2", "Q3"],
+          "options": [
+            ["A", "B", "C"],
+            ["X", "Y", "Z"],
+            ["X", "Y", "Z"]
+          ],
+          "correct": [0, 0, 0],
+          "retryOption": true
+        }
+      },
+      {
+        "id": 11,
+        "title": "asdasdas",
+        "content": "dasdasd",
+        "quiz": {
+          "questions": ["Q1", "Q2", "Q3"],
+          "options": [
+            ["A", "B", "C"],
+            ["X", "Y", "Z"],
+            ["X", "Y", "Z"]
+          ],
+          "correct": [0, 0, 0],
+          "retryOption": true
+        }
+      }
+    ],
+    "enrolledStudents": ["21", "22"],
+    "approvalStatus": "APPROVED",
+    "instructorId": 20
+  }
+]
