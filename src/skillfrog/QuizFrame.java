@@ -15,7 +15,6 @@ import java.util.ArrayList;
  * @author Enter Computer
  */
 public class QuizFrame extends javax.swing.JFrame {
-
     private int studentId;
     private int lessonId;
     private int courseId;
@@ -28,7 +27,7 @@ public class QuizFrame extends javax.swing.JFrame {
     /**
      * Creates new form QuizFrame
      */
-    public QuizFrame(int studentId, int lessonId, StudentService studentService, int courseId) {
+     public QuizFrame(int studentId, int lessonId, StudentService studentService, int courseId) {
         this.studentId = studentId;
         this.lessonId = lessonId;
         this.studentService = studentService;
@@ -40,7 +39,6 @@ public class QuizFrame extends javax.swing.JFrame {
             dispose();
             return;
         }
-
         this.questions = quiz.getQuestions();
         this.options = quiz.getOptions();
 
@@ -86,8 +84,6 @@ public class QuizFrame extends javax.swing.JFrame {
         JButton submitBtn = new JButton("Submit Quiz");
         submitBtn.addActionListener(e -> submitQuiz());
         add(submitBtn, BorderLayout.SOUTH);
-
-        setVisible(true);
     }
 
     private void submitQuiz() {
@@ -100,12 +96,11 @@ public class QuizFrame extends javax.swing.JFrame {
             answers.add(Integer.parseInt(bg.getSelection().getActionCommand()));
         }
 
-        boolean passed = studentService.submitQuiz(studentId, courseId, lessonId, answers);
+        boolean passed = studentService.submitQuiz(studentId,courseId, lessonId, answers);
         String message = passed ? "Quiz Passed!" : "Quiz Failed!";
         JOptionPane.showMessageDialog(this, message);
         dispose();
     }
-
     public QuizFrame() {
         initComponents();
     }

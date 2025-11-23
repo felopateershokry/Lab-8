@@ -92,6 +92,15 @@ public class JsonDatabaseManager {
         return null;
     }
 
+    public User getUserById(int id) {
+        for (User u : users) {
+            if (u.getUserId() == id) {
+                return u;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<User> getUsers() {
         return users;
     }
@@ -194,8 +203,5 @@ public class JsonDatabaseManager {
         }
         return result;
     }
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 }

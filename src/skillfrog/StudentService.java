@@ -16,9 +16,11 @@ import java.util.stream.Collectors;
 public class StudentService {
 
     private JsonDatabaseManager dbManager;
+    private CourseService service;
 
     public StudentService() {
         dbManager = new JsonDatabaseManager();
+        service = new CourseService(dbManager);
     }
 
     public List<Course> getAvailableCourses(int studentID) {
@@ -116,12 +118,37 @@ public class StudentService {
                 break;
             }
         }
-
+        initializeCourseProgress(Integer.toString(courseID), (Student) dbManager.getUserById(studentID));
         repo.saveCourses(allCourses);
         dbManager.saveUsers();
 
         return true;
 
+    }
+
+    public void initializeCourseProgress(String courseId, Student s) {
+
+        if (s == null) {
+            System.err.println("No logged-in student found.");
+            return;
+        }
+
+        if (s.getProgress() == null) {
+            s.setProgress(new HashMap<>());
+        }
+
+        List<Lesson> lessons = service.getCourse(Integer.parseInt(courseId)).getLessons();
+        if (lessons == null || lessons.isEmpty()) {
+            System.out.println("No lessons found for course ID: " + courseId);
+            return;
+        }
+
+        HashMap<String, Boolean> lessonProgress = new HashMap<>();
+        for (Lesson lesson : lessons) {
+            lessonProgress.put(String.valueOf(lesson.getId()), false);
+        }
+
+        s.getProgress().put(courseId, lessonProgress);
     }
 
     public List<Lesson> getLessons(int studentID, int courseID) {
@@ -249,6 +276,7 @@ public class StudentService {
     }
 
     public boolean submitQuiz(int studentID, int courseId, int lessonID, List<Integer> answers) {
+        // 1️⃣ Get student
         Student student = getStudentById(studentID);
         if (student == null) {
             System.out.println("Student not found");
@@ -294,34 +322,29 @@ public class StudentService {
             return false;
         }
 
-        // 6️⃣ Validate answers size
+        // 6️⃣ Calculate score
         List<Integer> correct = quiz.getCorrectAnswers();
-        if (answers.size() != correct.size()) {
-            System.out.println("Number of answers does not match number of questions");
-            return false;
-        }
-
-        // 7️⃣ Calculate score safely
+        int totalQuestions = correct.size();
         int score = 0;
-        for (int i = 0; i < correct.size(); i++) {
-            if (answers.get(i) != null && answers.get(i).equals(correct.get(i))) {
+        for (int i = 0; i < totalQuestions; i++) {
+            if (answers.get(i).equals(correct.get(i))) {
                 score++;
             }
         }
 
-        int percentage = (int) ((score * 100.0) / correct.size());
+        int percentage = (int) ((score * 100.0) / totalQuestions);
         boolean passed = percentage >= 60;
 
-        // 8️⃣ Update attempts and score
+        // 7️⃣ Update attempts and score
         student.incrementQuizAttempts(courseIdStr, String.valueOf(lessonID));
         student.setQuizScoreForLesson(courseIdStr, String.valueOf(lessonID), percentage);
 
-        // 9️⃣ Mark lesson completed if passed
+        // 8️⃣ Mark lesson completed if passed
         if (passed) {
             student.markLessonCompleted(courseIdStr, String.valueOf(lessonID));
         }
 
-        // 🔟 Save users
+        // 9️⃣ Save users
         dbManager.saveUsers();
         return passed;
     }
@@ -331,7 +354,10 @@ public class StudentService {
         if (student == null) {
             return false;
         }
-
+        Quiz quiz = getQuiz(lessonID);
+        if (quiz == null) {
+            return true;
+        }
         String courseIdStr = String.valueOf(courseId);
         student.ensureCourseInitialized(courseIdStr);
 

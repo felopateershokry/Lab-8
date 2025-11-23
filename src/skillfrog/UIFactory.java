@@ -53,113 +53,111 @@ public class UIFactory {
         return coursePanel;
     }
 
-public static JPanel createLessonPanel(
-        Lesson lesson,
-        int studentId,
-        StudentService studentService,
-        JFrame parentFrame,
-        int courseId
-) {
-    JPanel lessonPanel = new JPanel(new BorderLayout(10, 10));
-    lessonPanel.setBackground(Color.WHITE);
-    lessonPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-    lessonPanel.setMaximumSize(new Dimension(600, 70));
+    public static JPanel createLessonPanel(
+            Lesson lesson,
+            int studentId,
+            StudentService studentService,
+            JFrame parentFrame,
+            int courseId
+    ) {
+        JPanel lessonPanel = new JPanel(new BorderLayout(10, 10));
+        lessonPanel.setBackground(Color.WHITE);
+        lessonPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+        lessonPanel.setMaximumSize(new Dimension(600, 70));
 
-    JLabel lessonLabel = new JLabel(lesson.getId() + ": " + lesson.getTitle());
-    lessonLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    lessonPanel.add(lessonLabel, BorderLayout.CENTER);
+        JLabel lessonLabel = new JLabel(lesson.getId() + ": " + lesson.getTitle());
+        lessonLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        lessonPanel.add(lessonLabel, BorderLayout.CENTER);
 
-    boolean lessonCompleted = studentService
-            .getLessonProgress(studentId, courseId)
-            .getOrDefault(String.valueOf(lesson.getId()), false);
+        boolean lessonCompleted = studentService
+                .getLessonProgress(studentId, courseId)
+                .getOrDefault(String.valueOf(lesson.getId()), false);
 
-    JProgressBar progressBar = new JProgressBar(0, 1);
-    progressBar.setValue(lessonCompleted ? 1 : 0);
-    progressBar.setStringPainted(true);
-    progressBar.setString(lessonCompleted ? "Completed" : "Pending");
-    lessonPanel.add(progressBar, BorderLayout.WEST);
+        JProgressBar progressBar = new JProgressBar(0, 1);
+        progressBar.setValue(lessonCompleted ? 1 : 0);
+        progressBar.setStringPainted(true);
+        progressBar.setString(lessonCompleted ? "Completed" : "Pending");
+        lessonPanel.add(progressBar, BorderLayout.WEST);
 
-    JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-    buttonsPanel.setOpaque(false);
+        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttonsPanel.setOpaque(false);
 
-    Quiz quiz = lesson.getQuiz();
-    boolean quizExists = (quiz != null);
+        Quiz quiz = lesson.getQuiz();
+        boolean quizExists = (quiz != null);
 
-    // ✅ Use courseId in hasPassedQuiz
-    boolean quizPassedNow = !quizExists || studentService.hasPassedQuiz(studentId,courseId, lesson.getId());
+        // ✅ Use courseId in hasPassedQuiz
+        boolean quizPassedNow = !quizExists && studentService.hasPassedQuiz(studentId, courseId, lesson.getId());
 
-    JButton markComplete = new JButton("Mark Completed");
-    markComplete.setBackground(new Color(0xFF9800));
-    markComplete.setForeground(Color.WHITE);
-    markComplete.setFocusPainted(false);
-    markComplete.setFont(new Font("Segoe UI", Font.BOLD, 12));
-    markComplete.setEnabled(!lessonCompleted && (!quizExists || quizPassedNow));
+        JButton markComplete = new JButton("Mark Completed");
+        markComplete.setBackground(new Color(0xFF9800));
+        markComplete.setForeground(Color.WHITE);
+        markComplete.setFocusPainted(false);
+        markComplete.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        markComplete.setEnabled(!lessonCompleted && (!quizExists || quizPassedNow));
 
-    markComplete.addActionListener(e -> {
-        boolean stillQuizPassed = !quizExists || studentService.hasPassedQuiz(studentId,courseId,lesson.getId());
-        if (!stillQuizPassed) {
-            JOptionPane.showMessageDialog(parentFrame,
-                    "You must pass this lesson's quiz before marking it complete.");
-            return;
-        }
-
-        boolean success = studentService.markLessonCompleted(studentId, courseId, lesson.getId());
-        if (success) {
-            progressBar.setValue(1);
-            progressBar.setString("Completed");
-            markComplete.setEnabled(false);
-            JOptionPane.showMessageDialog(parentFrame, "Lesson marked completed!");
-            if (parentFrame instanceof StudentDashboardFrame) {
-                ((StudentDashboardFrame) parentFrame).showLessons(
-                        studentService.getEnrolledCourses(studentId)
-                                .stream()
-                                .filter(c -> c.getId() == courseId)
-                                .findFirst()
-                                .orElse(null)
-                );
+        markComplete.addActionListener(e -> {
+            boolean stillQuizPassed = !quizExists || studentService.hasPassedQuiz(studentId, courseId, lesson.getId());
+            if (!stillQuizPassed) {
+                JOptionPane.showMessageDialog(parentFrame,
+                        "You must pass this lesson's quiz before marking it complete.");
+                return;
             }
-        } else {
-            JOptionPane.showMessageDialog(parentFrame, "Cannot mark lesson.");
-        }
-    });
 
-    buttonsPanel.add(markComplete);
-
-    if (quizExists) {
-        JButton quizBtn = new JButton("Start Quiz");
-        quizBtn.setBackground(new Color(0x4CAF50));
-        quizBtn.setForeground(Color.WHITE);
-        quizBtn.setFocusPainted(false);
-        quizBtn.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        quizBtn.setEnabled(!quizPassedNow);
-
-        quizBtn.addActionListener(ae -> {
-            QuizFrame quizFrame = new QuizFrame(studentId, lesson.getId(), studentService, courseId);
-            quizFrame.setVisible(true);
-
-            quizFrame.addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-                public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                    if (parentFrame instanceof StudentDashboardFrame) {
-                        ((StudentDashboardFrame) parentFrame).showLessons(
-                                studentService.getEnrolledCourses(studentId)
-                                        .stream()
-                                        .filter(c -> c.getId() == courseId)
-                                        .findFirst()
-                                        .orElse(null)
-                        );
-                    }
+            boolean success = studentService.markLessonCompleted(studentId, courseId, lesson.getId());
+            if (success) {
+                progressBar.setValue(1);
+                progressBar.setString("Completed");
+                markComplete.setEnabled(false);
+                JOptionPane.showMessageDialog(parentFrame, "Lesson marked completed!");
+                if (parentFrame instanceof StudentDashboardFrame) {
+                    ((StudentDashboardFrame) parentFrame).showLessons(
+                            studentService.getEnrolledCourses(studentId)
+                                    .stream()
+                                    .filter(c -> c.getId() == courseId)
+                                    .findFirst()
+                                    .orElse(null)
+                    );
                 }
-            });
+            } else {
+                JOptionPane.showMessageDialog(parentFrame, "Cannot mark lesson.");
+            }
         });
 
-        buttonsPanel.add(quizBtn);
+        buttonsPanel.add(markComplete);
+
+        if (quizExists) {
+            JButton quizBtn = new JButton("Start Quiz");
+            quizBtn.setBackground(new Color(0x4CAF50));
+            quizBtn.setForeground(Color.WHITE);
+            quizBtn.setFocusPainted(false);
+            quizBtn.setFont(new Font("Segoe UI", Font.BOLD, 12));
+            quizBtn.setEnabled(!quizPassedNow);
+
+            quizBtn.addActionListener(ae -> {
+                QuizFrame quizFrame = new QuizFrame(studentId, lesson.getId(), studentService, courseId);
+                quizFrame.setVisible(true);
+
+                quizFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                        if (parentFrame instanceof StudentDashboardFrame) {
+                            ((StudentDashboardFrame) parentFrame).showLessons(
+                                    studentService.getEnrolledCourses(studentId)
+                                            .stream()
+                                            .filter(c -> c.getId() == courseId)
+                                            .findFirst()
+                                            .orElse(null)
+                            );
+                        }
+                    }
+                });
+            });
+
+            buttonsPanel.add(quizBtn);
+        }
+
+        lessonPanel.add(buttonsPanel, BorderLayout.EAST);
+        return lessonPanel;
     }
-
-    lessonPanel.add(buttonsPanel, BorderLayout.EAST);
-    return lessonPanel;
-}
-
-
 
 }

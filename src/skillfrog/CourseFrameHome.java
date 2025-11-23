@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  * @author Lenovo
  */
 public class CourseFrameHome extends javax.swing.JFrame {
-    
+
     private final JsonDatabaseManager db = new JsonDatabaseManager();
     private final CourseService service = new CourseService(db);
 
@@ -43,13 +43,8 @@ public class CourseFrameHome extends javax.swing.JFrame {
         deleteLesson = new javax.swing.JButton();
         viewStudents = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-<<<<<<< Updated upstream
-        jButton2 = new javax.swing.JButton();
-        analytics = new javax.swing.JButton();
-=======
         analytics = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
->>>>>>> Stashed changes
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -176,16 +171,6 @@ public class CourseFrameHome extends javax.swing.JFrame {
             }
         });
 
-        analytics.setBackground(new java.awt.Color(51, 51, 51));
-        analytics.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
-        analytics.setForeground(new java.awt.Color(255, 255, 255));
-        analytics.setText("View Insights");
-        analytics.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                analyticsActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -208,11 +193,7 @@ public class CourseFrameHome extends javax.swing.JFrame {
                             .addComponent(editLesson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(deleteLesson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(viewStudents, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-<<<<<<< Updated upstream
-                    .addComponent(analytics, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-=======
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
->>>>>>> Stashed changes
                 .addGap(40, 40, 40))
         );
         jPanel1Layout.setVerticalGroup(
@@ -234,15 +215,6 @@ public class CourseFrameHome extends javax.swing.JFrame {
                     .addComponent(deleteLesson))
                 .addGap(18, 18, 18)
                 .addComponent(viewStudents)
-<<<<<<< Updated upstream
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(analytics)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
-=======
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -250,7 +222,6 @@ public class CourseFrameHome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
->>>>>>> Stashed changes
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -261,13 +232,9 @@ public class CourseFrameHome extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< Updated upstream
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-=======
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
->>>>>>> Stashed changes
         );
 
         pack();
@@ -277,27 +244,27 @@ public class CourseFrameHome extends javax.swing.JFrame {
         this.setVisible(false);
         new AddCourseFrame().setVisible(true);
     }//GEN-LAST:event_creatCourseActionPerformed
-    
+
     private void addLessonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLessonActionPerformed
         this.setVisible(false);
         new AddLessonFrame().setVisible(true);
     }//GEN-LAST:event_addLessonActionPerformed
-    
+
     private void editCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCourseActionPerformed
         this.setVisible(false);
         new EditCourseFrame().setVisible(true);
     }//GEN-LAST:event_editCourseActionPerformed
-    
+
     private void editLessonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editLessonActionPerformed
         this.setVisible(false);
         new EditLessonFrame().setVisible(true);
     }//GEN-LAST:event_editLessonActionPerformed
-    
+
     private void deleteCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCourseActionPerformed
         String courseId = JOptionPane.showInputDialog("Enter Course id: ");
-        
+
         Instructor instructor = (Instructor) Session.loggedUser;
-        
+
         int confirm = JOptionPane.showConfirmDialog(
                 this,
                 "Are you sure you want to delete this course?",
@@ -309,13 +276,13 @@ public class CourseFrameHome extends javax.swing.JFrame {
             id = Integer.parseInt(courseId);
             if (service.deleteCourse(id, instructor)) {
                 JOptionPane.showMessageDialog(this, "Course deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                
+
             } else {
                 JOptionPane.showMessageDialog(this, "Failed to delete course", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_deleteCourseActionPerformed
-    
+
     private void deleteLessonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteLessonActionPerformed
         String courseId = JOptionPane.showInputDialog("Enter Course id: ");
         String lessonId = JOptionPane.showInputDialog("Enter Lesson id: ");
@@ -337,53 +304,16 @@ public class CourseFrameHome extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_deleteLessonActionPerformed
-    
+
     private void viewStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStudentsActionPerformed
         this.setVisible(false);
         new StudentsEnrolledFrame().setVisible(true);
     }//GEN-LAST:event_viewStudentsActionPerformed
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
         new Login().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-<<<<<<< Updated upstream
-    
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
-        new ShowInstructorCoursesFrame().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-    
-    private void analyticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analyticsActionPerformed
-        
-        Instructor instructor = (Instructor) Session.loggedUser;
-        String input = JOptionPane.showInputDialog(null, "Enter Course ID:");
-        
-        if (input == null || input.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Course ID is required!");
-            return;
-        }
-        
-        int courseId;
-        
-        try {
-            courseId = Integer.parseInt(input.trim());
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Invalid Course ID!");
-            return;
-        }
-        if (!instructor.owns(courseId)) {
-            JOptionPane.showMessageDialog(null, "Invalid Course ID!");
-            return;
-        }
-        
-        AnalyticsService analytics = new AnalyticsService();
-        CourseAnalyticsResult result = analytics.getCourseAnalytics(courseId);
-        
-        ChartFrame chart = new ChartFrame(result, db);
-        chart.setVisible(true);
-    }//GEN-LAST:event_analyticsActionPerformed
-=======
 
     private void analyticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analyticsActionPerformed
 
@@ -420,7 +350,6 @@ public class CourseFrameHome extends javax.swing.JFrame {
         this.setVisible(false);
         new ShowInstructorCoursesFrame().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
->>>>>>> Stashed changes
 
     /**
      * @param args the command line arguments
@@ -451,7 +380,6 @@ public class CourseFrameHome extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 new CourseFrameHome().setVisible(true);
             }

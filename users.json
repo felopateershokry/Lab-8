@@ -50,16 +50,8 @@
   },
   {
     "createdCourses": [
-<<<<<<< Updated upstream
-      1,
-      2,
-      3,
-      4,
-      10
-=======
       101,
       103
->>>>>>> Stashed changes
     ],
     "userId": 7,
     "role": "instructor",
@@ -68,14 +60,7 @@
     "passwordHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
   },
   {
-<<<<<<< Updated upstream
-    "createdCourses": [
-      5,
-      6
-    ],
-=======
     "createdCourses": [],
->>>>>>> Stashed changes
     "userId": 8,
     "role": "instructor",
     "username": "mo3taz",
@@ -103,15 +88,7 @@
     "passwordHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
   },
   {
-<<<<<<< Updated upstream
-    "createdCourses": [
-      7,
-      8,
-      9
-    ],
-=======
     "createdCourses": [],
->>>>>>> Stashed changes
     "userId": 11,
     "role": "instructor",
     "username": "mo",
@@ -128,13 +105,7 @@
     "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
   },
   {
-<<<<<<< Updated upstream
-    "enrolledCourses": [
-      "10"
-    ],
-=======
     "enrolledCourses": [],
->>>>>>> Stashed changes
     "progress": {
       "10": {
         "1": true,
@@ -150,60 +121,44 @@
   {
     "enrolledCourses": [
       "101",
-<<<<<<< Updated upstream
-      "102"
-=======
       "102",
       "105"
->>>>>>> Stashed changes
     ],
     "progress": {
       "101": {
         "1": true,
         "2": true
       },
-<<<<<<< Updated upstream
-      "102": {}
-=======
       "102": {},
       "105": {
         "40": true,
         "41": true,
         "42": true
       }
->>>>>>> Stashed changes
     },
     "quizScore": {
       "101": {
         "1": 100,
         "2": 100
       },
-<<<<<<< Updated upstream
-      "102": {}
-=======
       "102": {},
       "105": {
         "40": 100,
         "41": 66,
         "42": 100
       }
->>>>>>> Stashed changes
     },
     "quizAttempts": {
       "101": {
         "1": 1,
         "2": 1
       },
-<<<<<<< Updated upstream
-      "102": {}
-=======
       "102": {},
       "105": {
         "40": 1,
         "41": 1,
         "42": 5
       }
->>>>>>> Stashed changes
     },
     "userId": 14,
     "role": "student",
@@ -212,104 +167,22 @@
     "passwordHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
   },
   {
-<<<<<<< Updated upstream
-    "createdCourses": [
-      103,
-      104,
-      105
-    ],
-    "userId": 15,
-    "role": "instructor",
-    "username": "ahm",
-    "email": "am@gmail.com",
-    "passwordHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
-  },
-  {
     "enrolledCourses": [
       "103",
-      "104",
-      "105",
-=======
-    "enrolledCourses": [
-      "103",
->>>>>>> Stashed changes
       "102"
     ],
     "progress": {
       "102": {
-<<<<<<< Updated upstream
-        "1": true
-      },
-      "103": {
-        "1": true,
-        "2": true,
-        "3": true,
-        "4": true,
-        "5": true
-=======
         "1": true,
         "2": true
       },
-      "103": {
-        "1": true,
-        "2": true
->>>>>>> Stashed changes
-      }
-    },
-    "quizScore": {
-      "102": {
-<<<<<<< Updated upstream
-        "1": 100
-      },
-      "103": {
-        "1": 100,
-        "2": 100,
-        "3": 100,
-        "4": 100,
-        "5": 100
-      }
-    },
-    "quizAttempts": {
-      "102": {
-        "1": 4
-      },
-      "103": {
-        "1": 4,
-        "2": 1,
-        "3": 1,
-        "4": 1,
-        "5": 1
-      }
-    },
-    "userId": 16,
-    "role": "student",
-    "username": "amama",
-    "email": "z@gmail.com",
-    "passwordHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
-  },
-  {
-    "enrolledCourses": [
-      "103"
-    ],
-    "progress": {
       "103": {
         "1": true,
         "2": true
       }
     },
     "quizScore": {
-      "103": {
-        "1": 100,
-        "2": 100,
-        "3": 50
-      }
-    },
-    "quizAttempts": {
-      "103": {
-        "1": 2,
-        "2": 1,
-        "3": 2
-=======
+      "102": {
         "1": 100,
         "2": 100
       },
@@ -367,53 +240,16 @@
         "40": 1,
         "41": 1,
         "42": 1
->>>>>>> Stashed changes
       }
     },
     "userId": 17,
     "role": "student",
-<<<<<<< Updated upstream
-    "username": "hksda",
-    "email": "a@a.a",
-=======
     "username": "green",
     "email": "g@g.g",
->>>>>>> Stashed changes
     "passwordHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
   },
   {
     "enrolledCourses": [
-<<<<<<< Updated upstream
-      "103",
-      "102",
-      "101"
-    ],
-    "progress": {
-      "101": {
-        "1": true
-      },
-      "102": {},
-      "103": {}
-    },
-    "quizScore": {
-      "101": {
-        "1": 100,
-        "2": 50
-      },
-      "102": {},
-      "103": {
-        "1": 50
-      }
-    },
-    "quizAttempts": {
-      "101": {
-        "1": 2,
-        "2": 1
-      },
-      "102": {},
-      "103": {
-        "1": 2
-=======
       "104",
       "105"
     ],
@@ -440,98 +276,12 @@
         "40": 2,
         "41": 2,
         "42": 1
->>>>>>> Stashed changes
       }
     },
     "userId": 18,
     "role": "student",
-<<<<<<< Updated upstream
-    "username": "dd",
-    "email": "d@d.d",
-    "passwordHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
-  },
-  {
-    "enrolledCourses": [
-      "103",
-      "102"
-    ],
-    "progress": {},
-    "quizScore": {},
-    "quizAttempts": {},
-    "userId": 19,
-    "role": "student",
-    "username": "asd",
-    "email": "m@m.m",
-    "passwordHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
-  },
-  {
-    "createdCourses": [
-      106
-    ],
-    "userId": 20,
-    "role": "instructor",
-    "username": "mohamed",
-    "email": "mo@m.m",
-    "passwordHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
-  },
-  {
-    "enrolledCourses": [
-      "106"
-    ],
-    "progress": {
-      "106": {
-        "11": true,
-        "10": true
-      }
-    },
-    "quizScore": {
-      "106": {
-        "11": 100,
-        "10": 66
-      }
-    },
-    "quizAttempts": {
-      "106": {
-        "11": 1,
-        "10": 1
-      }
-    },
-    "userId": 21,
-    "role": "student",
-    "username": "dsa",
-    "email": "aa@a.a",
-    "passwordHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
-  },
-  {
-    "enrolledCourses": [
-      "106"
-    ],
-    "progress": {
-      "106": {
-        "11": true,
-        "10": true
-      }
-    },
-    "quizScore": {
-      "106": {
-        "11": 66,
-        "10": 100
-      }
-    },
-    "quizAttempts": {
-      "106": {
-        "11": 1,
-        "10": 1
-      }
-    },
-    "userId": 22,
-    "role": "student",
-    "username": "asda",
-    "email": "h@h.h",
-=======
     "username": "hjkasd",
     "email": "k@k.k",
->>>>>>> Stashed changes
     "passwordHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
   }
 ]

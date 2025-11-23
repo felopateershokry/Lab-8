@@ -33,6 +33,10 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
                 jTextField2.setText(jTable2.getValueAt(row, 2).toString());
                 jTextField3.setText(jTable2.getValueAt(row, 3).toString());
                 jTextField4.setText(jTable2.getValueAt(row, 4).toString());
+                jTextField1.setEditable(false);
+                jTextField2.setEditable(false);
+                jTextField3.setEditable(false);
+                jTextField4.setEditable(false);
 
             }
         });
