@@ -92,6 +92,15 @@ public class JsonDatabaseManager {
         return null;
     }
 
+    public User getUserById(int id) {
+        for (User u : users) {
+            if (u.getUserId() == id) {
+                return u;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<User> getUsers() {
         return users;
     }
@@ -107,6 +116,15 @@ public class JsonDatabaseManager {
         } catch (Exception e) {
             return new ArrayList<>();
         }
+    }
+
+    public void addCourse(Course course) {
+        if (courses == null) {
+            courses = new ArrayList<>();
+            loadCourses();
+        }
+        courses.add(course);
+        saveCourses(courses);
     }
 
     public void saveCourses(List<Course> courses) {

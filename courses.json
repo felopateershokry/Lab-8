@@ -1,98 +1,81 @@
-[
-  {
-    "id": 1,
-    "title": "lll",
-    "description": "fffff",
-    "lessons": [{ "id": 1, "title": "fwgryth", "content": "gerhjjt" }],
-    "enrolledStudents": [],
-    "approvalStatus": "PENDING",
-    "instructorId": 7
-  },
-  {
-    "id": 2,
-    "title": "sdfdsf",
-    "description": "ewew",
-    "lessons": [{ "id": 1, "title": "fgggg", "content": "hdhfd" }],
-    "enrolledStudents": [],
-    "approvalStatus": "PENDING",
-    "instructorId": 7
-  },
-  {
-    "id": 3,
-    "title": "felo",
-    "description": "cfewerg",
-    "lessons": [],
-    "enrolledStudents": [],
-    "approvalStatus": "PENDING",
-    "instructorId": 7
-  },
-  {
-    "id": 4,
-    "title": "twe",
-    "description": "reww",
-    "lessons": [{ "id": 1, "title": "mg", "content": "jnhfj" }],
-    "enrolledStudents": [],
-    "approvalStatus": "PENDING",
-    "instructorId": 7
-  },
-  {
-    "id": 5,
-    "title": "vdsv",
-    "description": "sdvd",
-    "lessons": [{ "id": 1, "title": "vfv", "content": "vfv" }],
-    "enrolledStudents": [],
-    "approvalStatus": "PENDING",
-    "instructorId": 8
-  },
-  {
-    "id": 6,
-    "title": "ppp",
-    "description": "pppp",
-    "lessons": [],
-    "enrolledStudents": [],
-    "approvalStatus": "PENDING",
-    "instructorId": 8
-  },
-  {
-    "id": 7,
-    "title": "c10",
-    "description": "c1010",
-    "lessons": [],
-    "enrolledStudents": [],
-    "approvalStatus": "PENDING",
-    "instructorId": 11
-  },
-  {
-    "id": 8,
-    "title": "c12",
-    "description": "c20",
-    "lessons": [],
-    "enrolledStudents": [],
-    "approvalStatus": "REJECTED",
-    "instructorId": 11
-  },
-  {
-    "id": 9,
-    "title": "test",
-    "description": "testing",
-    "lessons": [],
-    "enrolledStudents": [],
-    "approvalStatus": "PENDING",
-    "instructorId": 11
-  },
-  {
-    "id": 10,
-    "title": "English",
-    "description": "English Description",
-    "lessons": [
-      { "id": 1, "title": "A1", "content": "A1A1" },
-      { "id": 2, "title": "A2", "content": "A2A2" },
-      { "id": 3, "title": "B1", "content": "B1B1" },
-      { "id": 4, "title": "B2", "content": "B2B2" },
-      { "id": 5, "title": "C1", "content": "C1C1" }
-    ],
-    "enrolledStudents": ["9"],
-    "approvalStatus": "APPROVED",
-    "instructorId": 7
-  }
-]
+[ {
+  "id" : 101,
+  "title" : "Java Basics",
+  "description" : "Intro to Java",
+  "lessons" : [ {
+    "id" : 1,
+    "title" : "Intro",
+    "content" : "Java intro content",
+    "quiz" : {
+      "questions" : [ "Q1", "Q2" ],
+      "options" : [ [ "A", "B", "C" ], [ "X", "Y", "Z" ] ],
+      "correct" : [ 0, 2 ],
+      "retryOption" : true
+    }
+  }, {
+    "id" : 2,
+    "title" : "Variables",
+    "content" : "Java variables content",
+    "quiz" : {
+      "questions" : [ "Q3", "Q4" ],
+      "options" : [ [ "1", "2", "3" ], [ "4", "5", "6" ] ],
+      "correct" : [ 1, 0 ],
+      "retryOption" : true
+    }
+  }, {
+    "id" : 3,
+    "title" : "English",
+    "content" : "English B4"
+  }, {
+    "id" : 4,
+    "title" : "Englishttt",
+    "content" : "Englishttt fefe"
+  } ],
+  "enrolledStudents" : [ "14" ],
+  "approvalStatus" : "approved",
+  "instructorId" : 7
+}, {
+  "id" : 102,
+  "title" : "Python Basics",
+  "description" : "Intro to Python",
+  "lessons" : [ {
+    "id" : 1,
+    "title" : "Intro",
+    "content" : "Python intro content",
+    "quiz" : {
+      "questions" : [ "Q1", "Q2" ],
+      "options" : [ [ "A", "B", "C" ], [ "X", "Y", "Z" ] ],
+      "correct" : [ 2, 1 ],
+      "retryOption" : true
+    }
+  }, {
+    "id" : 2,
+    "title" : "Data Types",
+    "content" : "Python data types content",
+    "quiz" : {
+      "questions" : [ "Q3", "Q4" ],
+      "options" : [ [ "7", "8", "9" ], [ "10", "11", "12" ] ],
+      "correct" : [ 1, 0 ],
+      "retryOption" : false
+    }
+  } ],
+  "enrolledStudents" : [ "1", "22", "14", "15" ],
+  "approvalStatus" : "approved",
+  "instructorId" : 0
+}, {
+  "id" : 103,
+  "title" : "English",
+  "description" : "A1",
+  "lessons" : [ {
+    "id" : 1,
+    "title" : "A1",
+    "content" : "A11"
+  }, {
+    "id" : 2,
+    "title" : "A2",
+    "content" : "A22"
+  } ],
+  "enrolledStudents" : [ "15" ],
+  "approvalStatus" : "APPROVED",
+  "instructorId" : 7
+} ]

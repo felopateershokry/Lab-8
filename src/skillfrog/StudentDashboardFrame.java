@@ -7,8 +7,12 @@ package skillfrog;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -69,10 +73,22 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
         btnLogout.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnLogout.addActionListener(e -> logout());
 
+        JButton btnCertificate = new JButton("Show Certificate");
+        btnCertificate.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnCertificate.addActionListener(e -> {
+            try {
+                showCertificate();
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(StudentDashboardFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        });
+
         sideBar.add(Box.createVerticalStrut(20));
         sideBar.add(btnAvailable);
         sideBar.add(Box.createVerticalStrut(10));
         sideBar.add(btnEnrolled);
+        sideBar.add(Box.createVerticalStrut(10));
+        sideBar.add(btnCertificate);
         sideBar.add(Box.createVerticalStrut(10));
         sideBar.add(btnLogout);
 
@@ -131,9 +147,9 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
     }
 
     public void logout() {
-        // يسأل المستخدم قبل تسجيل الخروج
+
         int confirm = JOptionPane.showConfirmDialog(
-                this, // Frame الحالي
+                this,
                 "Are you sure you want to logout?",
                 "Logout",
                 JOptionPane.YES_NO_OPTION
@@ -157,7 +173,24 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
         container.setBackground(new Color(0xf5f5f5));
 
-        for (Lesson l : lessons) {
+        for (int i = 0; i < lessons.size(); i++) {
+            Lesson l = lessons.get(i);
+
+            Quiz quiz = l.getQuiz();
+            boolean quizExists = (quiz != null);
+
+            if (i > 0) {
+                Lesson prevLesson = lessons.get(i - 1);
+                boolean prevPassed = studentService.hasPassedQuiz(studentId, course.getId(), prevLesson.getId());
+                if (quizExists) {
+                    if (!prevPassed) {
+
+                        continue;
+                    }
+
+                }
+            }
+
             JPanel lessonPanel = UIFactory.createLessonPanel(
                     l, studentId, studentService, this, course.getId()
             );
@@ -172,6 +205,23 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
         contentArea.add(scrollPane, BorderLayout.CENTER);
         contentArea.revalidate();
         contentArea.repaint();
+    }
+
+    public void showCertificate() throws IOException {
+        CertificateManager cm = new CertificateManager("users.json");
+        String courseId = JOptionPane.showInputDialog(this, "Enter Course ID:");
+        if (courseId == null || courseId.isEmpty()) {
+            return;
+        }
+
+        boolean completed = cm.isCourseCompleted(studentId, courseId);
+        if (!completed) {
+            JOptionPane.showMessageDialog(this, "Course not completed yet!");
+            return;
+        }
+
+        Map<String, Object> cert = cm.generateAndStoreCertificate(studentId, courseId);
+        CertificateViewer.showCertificate(cert);
     }
 
     /**

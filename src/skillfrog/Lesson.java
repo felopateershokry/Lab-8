@@ -9,7 +9,15 @@ public class Lesson {
     private int id;
     private String title;
     private String content;
-
+    private Quiz quiz;
+    
+    
+    public Quiz getQuiz(){
+        return quiz; 
+    }
+    public void setQuiz(Quiz quiz){
+        this.quiz=quiz;
+    }
     public Lesson(int id, String title, String content) {
         this.id = id;
         this.title = title;

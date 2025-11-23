@@ -18,7 +18,7 @@ public class Course {
     private String description;
     private List<Lesson> lessons = new ArrayList<>();
     private List<String> enrolledStudents = new ArrayList<>();
-    private String approvalStatus = "PENDING";
+    private String approvalStatus = "pending";
     private int instructorId;
 
     public Course(int id, String title, String description) {

@@ -16,9 +16,11 @@ import java.util.stream.Collectors;
 public class StudentService {
 
     private JsonDatabaseManager dbManager;
+    private CourseService service;
 
     public StudentService() {
         dbManager = new JsonDatabaseManager();
+        service = new CourseService(dbManager);
     }
 
     public List<Course> getAvailableCourses(int studentID) {
@@ -116,7 +118,7 @@ public class StudentService {
                 break;
             }
         }
-
+        initializeCourseProgress(Integer.toString(courseID), (Student) dbManager.getUserById(studentID));
         repo.saveCourses(allCourses);
         dbManager.saveUsers();
 
@@ -124,22 +126,70 @@ public class StudentService {
 
     }
 
+    public void initializeCourseProgress(String courseId, Student s) {
+
+        if (s == null) {
+            System.err.println("No logged-in student found.");
+            return;
+        }
+
+        if (s.getProgress() == null) {
+            s.setProgress(new HashMap<>());
+        }
+
+        List<Lesson> lessons = service.getCourse(Integer.parseInt(courseId)).getLessons();
+        if (lessons == null || lessons.isEmpty()) {
+            System.out.println("No lessons found for course ID: " + courseId);
+            return;
+        }
+
+        HashMap<String, Boolean> lessonProgress = new HashMap<>();
+        for (Lesson lesson : lessons) {
+            lessonProgress.put(String.valueOf(lesson.getId()), false);
+        }
+
+        s.getProgress().put(courseId, lessonProgress);
+    }
+
     public List<Lesson> getLessons(int studentID, int courseID) {
         List<Course> enrolled = getEnrolledCourses(studentID);
 
         for (Course i : enrolled) {
             if (i.getId() == courseID) {
-                if (i.getLessons() == null) {
+
+                List<Lesson> lessons = i.getLessons();
+                if (lessons == null) {
                     System.out.println("no lessons added yet");
                     return new ArrayList<>();
                 }
-                return i.getLessons();
+
+                List<Lesson> accessibleLessons = new ArrayList<>();
+                for (int idx = 0; idx < lessons.size(); idx++) {
+                    Lesson lesson = lessons.get(idx);
+
+                    if (idx == 0) {
+                        accessibleLessons.add(lesson);
+                        continue;
+                    }
+
+                    int prevLessonId = lessons.get(idx - 1).getId();
+                    boolean prevCompleted = getLessonProgress(studentID, courseID)
+                            .getOrDefault(String.valueOf(prevLessonId), false);
+
+                    if (prevCompleted) {
+                        accessibleLessons.add(lesson);
+                    } else {
+                        System.out.println("Complete previous lesson first to access lesson " + lesson.getId());
+                        break; // stop showing further lessons
+                    }
+                }
+
+                return accessibleLessons;
             }
         }
 
         System.out.println("Course not found or student not enrolled");
         return new ArrayList<>();
-
     }
 
     public boolean markLessonCompleted(int studentID, int courseID, int lessonID) {
@@ -212,6 +262,115 @@ public class StudentService {
                 String.valueOf(courseID),
                 new HashMap<String, Boolean>()
         );
+    }
+
+    public Quiz getQuiz(int lessonID) {
+        for (Course course : dbManager.loadCourses()) {
+            for (Lesson lesson : course.getLessons()) {
+                if (lesson.getId() == lessonID) {
+                    return lesson.getQuiz();
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean submitQuiz(int studentID, int courseId, int lessonID, List<Integer> answers) {
+        // 1️⃣ Get student
+        Student student = getStudentById(studentID);
+        if (student == null) {
+            System.out.println("Student not found");
+            return false;
+        }
+
+        String courseIdStr = String.valueOf(courseId);
+
+        // 2️⃣ Ensure nested maps for this course exist
+        student.ensureCourseInitialized(courseIdStr);
+
+        // 3️⃣ Find the lesson in the specified course
+        Course course = dbManager.loadCourses().stream()
+                .filter(c -> c.getId() == courseId)
+                .findFirst()
+                .orElse(null);
+
+        if (course == null) {
+            System.out.println("Course not found");
+            return false;
+        }
+
+        Lesson lesson = course.getLessons().stream()
+                .filter(l -> l.getId() == lessonID)
+                .findFirst()
+                .orElse(null);
+
+        if (lesson == null) {
+            System.out.println("Lesson not found in course");
+            return false;
+        }
+
+        // 4️⃣ Get the quiz
+        Quiz quiz = lesson.getQuiz();
+        if (quiz == null) {
+            System.out.println("Quiz not found");
+            return false;
+        }
+
+        // 5️⃣ Check retry rules
+        int attempts = student.getQuizAttempts(courseIdStr, String.valueOf(lessonID));
+        if (!quiz.isRetryAllowed() && attempts >= 1) {
+            return false;
+        }
+
+        // 6️⃣ Calculate score
+        List<Integer> correct = quiz.getCorrectAnswers();
+        int totalQuestions = correct.size();
+        int score = 0;
+        for (int i = 0; i < totalQuestions; i++) {
+            if (answers.get(i).equals(correct.get(i))) {
+                score++;
+            }
+        }
+
+        int percentage = (int) ((score * 100.0) / totalQuestions);
+        boolean passed = percentage >= 60;
+
+        // 7️⃣ Update attempts and score
+        student.incrementQuizAttempts(courseIdStr, String.valueOf(lessonID));
+        student.setQuizScoreForLesson(courseIdStr, String.valueOf(lessonID), percentage);
+
+        // 8️⃣ Mark lesson completed if passed
+        if (passed) {
+            student.markLessonCompleted(courseIdStr, String.valueOf(lessonID));
+        }
+
+        // 9️⃣ Save users
+        dbManager.saveUsers();
+        return passed;
+    }
+
+    public boolean hasPassedQuiz(int studentID, int courseId, int lessonID) {
+        Student student = getStudentById(studentID);
+        if (student == null) {
+            return false;
+        }
+        Quiz quiz = getQuiz(lessonID);
+        if (quiz == null) {
+            return true;
+        }
+        String courseIdStr = String.valueOf(courseId);
+        student.ensureCourseInitialized(courseIdStr);
+
+        int score = student.getQuizScoreForLesson(courseIdStr, String.valueOf(lessonID));
+        return score >= 60;
+    }
+
+    private Student getStudentById(int studentId) {
+        return dbManager.getUsers().stream()
+                .filter(u -> u instanceof Student && u.getUserId() == studentId)
+                .map(u -> (Student) u)
+                .findFirst()
+                .orElse(null);
     }
 
     public void addStudent(Student s) {
