@@ -327,7 +327,10 @@ public class StudentService {
 public boolean hasPassedQuiz(int studentID, int courseId, int lessonID) {
     Student student = getStudentById(studentID);
     if (student == null) return false;
-
+    Quiz quiz = getQuiz(lessonID);
+    if (quiz == null) {
+        return true;
+    }
     String courseIdStr = String.valueOf(courseId);
     student.ensureCourseInitialized(courseIdStr);
 

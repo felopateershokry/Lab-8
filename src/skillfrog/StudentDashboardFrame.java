@@ -159,14 +159,19 @@ public void showLessons(Course course) {
 
     for (int i = 0; i < lessons.size(); i++) {
         Lesson l = lessons.get(i);
+         Quiz quiz = l.getQuiz();
+    boolean quizExists = (quiz != null);
+
 
         // Check if previous lesson's quiz is passed
         if (i > 0) {
             Lesson prevLesson = lessons.get(i - 1);
             boolean prevPassed = studentService.hasPassedQuiz(studentId, course.getId(),prevLesson.getId());
+            if(quizExists){
             if (!prevPassed) {
                 // Skip this lesson until previous quiz passed
                 continue;
+            }
             }
         }
 
