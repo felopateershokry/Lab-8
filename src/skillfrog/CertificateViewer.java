@@ -10,6 +10,8 @@ package skillfrog;
  */
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 public class CertificateViewer {
@@ -18,8 +20,9 @@ public class CertificateViewer {
 
         JFrame frame = new JFrame("Certificate Viewer");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(400, 300);
+        frame.setSize(420, 350);
         frame.setLocationRelativeTo(null);
+        frame.setLayout(new BorderLayout());
 
         StringBuilder sb = new StringBuilder();
         sb.append("Certificate ID: ").append(certificate.get("certificateId")).append("\n");
@@ -30,9 +33,30 @@ public class CertificateViewer {
         JTextArea textArea = new JTextArea(sb.toString());
         textArea.setEditable(false);
         textArea.setFont(new Font("Arial", Font.PLAIN, 14));
-        JScrollPane scrollPane = new JScrollPane(textArea);
 
-        frame.getContentPane().add(scrollPane);
+        JButton downloadBtn = new JButton("Download as PDF");
+
+        downloadBtn.addActionListener(e -> {
+            try {
+                CertificateManager cm = new CertificateManager("users.json");
+                File pdf = cm.generatePdfCertificate(certificate, "certificates");
+
+                JOptionPane.showMessageDialog(frame,
+                        "PDF Saved at:\n" + pdf.getAbsolutePath(),
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(frame,
+                        "Error generating PDF!",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        frame.add(new JScrollPane(textArea), BorderLayout.CENTER);
+        frame.add(downloadBtn, BorderLayout.SOUTH);
+
         frame.setVisible(true);
     }
 }

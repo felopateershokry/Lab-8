@@ -209,18 +209,18 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
 
     public void showCertificate() throws IOException {
         CertificateManager cm = new CertificateManager("users.json");
-        String courseId = JOptionPane.showInputDialog(this, "Enter Course ID:");
-        if (courseId == null || courseId.isEmpty()) {
+        String coursename = JOptionPane.showInputDialog(this, "Enter Course id :");
+        if (coursename == null || coursename.isEmpty()) {
             return;
         }
 
-        boolean completed = cm.isCourseCompleted(studentId, courseId);
+        boolean completed = cm.isCourseCompleted(studentId, coursename);
         if (!completed) {
             JOptionPane.showMessageDialog(this, "Course not completed yet!");
             return;
         }
 
-        Map<String, Object> cert = cm.generateAndStoreCertificate(studentId, courseId);
+        Map<String, Object> cert = cm.generateAndStoreCertificate(studentId, coursename);
         CertificateViewer.showCertificate(cert);
     }
 

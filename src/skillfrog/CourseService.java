@@ -163,4 +163,32 @@ public class CourseService {
         return courses;
     }
 
+    public boolean addQuizToLesson(int courseId, int lessonId, Quiz quiz) {
+
+        List<Course> courses = repo.loadCourses();
+        Course course = courses.stream()
+                .filter(c -> c.getId() == courseId)
+                .findFirst()
+                .orElse(null);
+
+        if (course == null) {
+            return false;
+        }
+
+        Lesson lesson = course.getLessons().stream()
+                .filter(l -> l.getId() == lessonId)
+                .findFirst()
+                .orElse(null);
+
+        if (lesson == null) {
+            return false;
+        }
+
+        lesson.setQuiz(quiz);  // set quiz
+
+        repo.saveCourses(courses); // save to courses.json
+
+        return true;
+    }
+
 }

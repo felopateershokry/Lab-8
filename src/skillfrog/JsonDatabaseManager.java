@@ -152,6 +152,7 @@ public class JsonDatabaseManager {
         }
 
         int maxId = 0;
+
         for (Course c : courses) {
             if (c.getId() > maxId) {
                 maxId = c.getId();

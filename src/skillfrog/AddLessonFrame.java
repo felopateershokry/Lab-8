@@ -5,6 +5,7 @@
 package skillfrog;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -212,11 +213,27 @@ public class AddLessonFrame extends javax.swing.JFrame {
         Lesson l = new Lesson(lid, title, content);
         if (service.addLesson(cid, l, i)) {
             JOptionPane.showMessageDialog(this, "Lesson added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            this.setVisible(false);
-            new CourseFrameHome().setVisible(true);
+
+            int confirm = JOptionPane.showConfirmDialog(
+                    this,
+                    "do you want to add a quiz to the lesson",
+                    "Confirm",
+                    JOptionPane.YES_NO_OPTION
+            );
+            if (confirm == JOptionPane.YES_OPTION) {
+
+                Quizdashboard q = new Quizdashboard(cid, lid);
+                q.setVisible(true);
+                this.dispose();;
+            } else {
+                this.setVisible(false);
+                new CourseFrameHome().setVisible(true);
+            }
+
         } else {
             JOptionPane.showMessageDialog(this, "Failed to add lesson", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -278,6 +295,14 @@ public class AddLessonFrame extends javax.swing.JFrame {
                 new AddLessonFrame().setVisible(true);
             }
         });
+    }
+
+    public JTextField getjCourseId() {
+        return jCourseId;
+    }
+
+    public JTextField getjLessonId() {
+        return jLessonId;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
