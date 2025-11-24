@@ -4,6 +4,10 @@
  */
 package skillfrog;
 
+import skillfrog.Frames.AdminDashboardFrame;
+import skillfrog.Frames.CourseFrameHome;
+import skillfrog.Frames.SignUp;
+import skillfrog.Frames.StudentDashboardFrame;
 import javax.swing.JOptionPane;
 
 /**

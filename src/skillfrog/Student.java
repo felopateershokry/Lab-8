@@ -25,22 +25,28 @@ public class Student extends User {
         }
         return enrolledCourses;
     }
-public void ensureCourseInitialized(String courseId) {
-    // Initialize progress
-    if (!progress.containsKey(courseId)) {
-        progress.put(courseId, new HashMap<>());
+
+    public void ensureCourseInitialized(String courseId) {
+        // Initialize progress
+        if (!progress.containsKey(courseId)) {
+            progress.put(courseId, new HashMap<>());
+        }
+        // Initialize quizScore
+        if (quizScore == null) {
+            quizScore = new HashMap<>();
+        }
+        if (!quizScore.containsKey(courseId)) {
+            quizScore.put(courseId, new HashMap<>());
+        }
+        // Initialize quizAttempts
+        if (quizAttempts == null) {
+            quizAttempts = new HashMap<>();
+        }
+        if (!quizAttempts.containsKey(courseId)) {
+            quizAttempts.put(courseId, new HashMap<>());
+        }
     }
-    // Initialize quizScore
-    if (quizScore == null) quizScore = new HashMap<>();
-    if (!quizScore.containsKey(courseId)) {
-        quizScore.put(courseId, new HashMap<>());
-    }
-    // Initialize quizAttempts
-    if (quizAttempts == null) quizAttempts = new HashMap<>();
-    if (!quizAttempts.containsKey(courseId)) {
-        quizAttempts.put(courseId, new HashMap<>());
-    }
-}
+
     public void enrollCourse(String courseId) {
         if (!getEnrolledCourses().contains(courseId)) {
             enrolledCourses.add(courseId);
@@ -72,7 +78,9 @@ public void ensureCourseInitialized(String courseId) {
 
     // ===== QUIZ SCORE =====
     public HashMap<String, HashMap<String, Integer>> getQuizScore() {
-        if (quizScore == null) quizScore = new HashMap<>();
+        if (quizScore == null) {
+            quizScore = new HashMap<>();
+        }
         return quizScore;
     }
 
@@ -92,7 +100,9 @@ public void ensureCourseInitialized(String courseId) {
 
     // ===== QUIZ ATTEMPTS =====
     public HashMap<String, HashMap<String, Integer>> getQuizAttempts() {
-        if (quizAttempts == null) quizAttempts = new HashMap<>();
+        if (quizAttempts == null) {
+            quizAttempts = new HashMap<>();
+        }
         return quizAttempts;
     }
 
@@ -101,7 +111,9 @@ public void ensureCourseInitialized(String courseId) {
     }
 
     public void initializeQuizAttemptsForCourse(String courseId) {
-        if (quizAttempts == null) quizAttempts = new HashMap<>();
+        if (quizAttempts == null) {
+            quizAttempts = new HashMap<>();
+        }
         if (!quizAttempts.containsKey(courseId)) {
             quizAttempts.put(courseId, new HashMap<>());
         }
@@ -116,5 +128,18 @@ public void ensureCourseInitialized(String courseId) {
         int current = courseAttempts.getOrDefault(lessonId, 0);
         courseAttempts.put(lessonId, current + 1);
         quizAttempts.put(courseId, courseAttempts);
+    }
+
+    public int getCompletedLessonsCount(String courseId) {
+        if (!progress.containsKey(courseId)) {
+            return 0;
+        }
+        int count = 0;
+        for (boolean done : progress.get(courseId).values()) {
+            if (done) {
+                count++;
+            }
+        }
+        return count;
     }
 }

@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -92,6 +93,15 @@ public class JsonDatabaseManager {
         return null;
     }
 
+    public User getUserById(int id) {
+        for (User u : users) {
+            if (u.getUserId() == id) {
+                return u;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<User> getUsers() {
         return users;
     }
@@ -108,17 +118,16 @@ public class JsonDatabaseManager {
             return new ArrayList<>();
         }
     }
-    
+
     public void addCourse(Course course) {
-    if (courses == null) {
-        courses = new ArrayList<>();
-        loadCourses();
+        if (courses == null) {
+            courses = new ArrayList<>();
+            loadCourses();
+        }
+        courses.add(course);
+        saveCourses(courses);
     }
-    courses.add(course);
-    saveCourses(courses);
-}
-    
- 
+
     public void saveCourses(List<Course> courses) {
         try (FileWriter writer = new FileWriter(FILE_Courses)) {
             gson1.toJson(courses, writer);
@@ -144,6 +153,7 @@ public class JsonDatabaseManager {
         }
 
         int maxId = 0;
+
         for (Course c : courses) {
             if (c.getId() > maxId) {
                 maxId = c.getId();
@@ -154,33 +164,22 @@ public class JsonDatabaseManager {
     }
 
     public int generateLessonId(int courseId) {
-        List<Course> courses = loadCourses();
 
-        Course course = null;
-        for (Course c : courses) {
-            if (c.getId() == courseId) {
-                course = c;
-                break;
+        return new Random().nextInt(900000000) + 100000; // between 100000–999999
+
+    }
+
+    public List<Student> getAllStudentsForCourse(int courseId) {
+        List<Student> result = new ArrayList<>();
+
+        for (User u : users) {
+            if (u instanceof Student s) {
+                if (s.getEnrolledCourses().contains(String.valueOf(courseId))) {
+                    result.add(s);
+                }
             }
         }
-
-        if (course == null) {
-            return 1;
-        }
-
-        List<Lesson> lessons = course.getLessons();
-        if (lessons == null || lessons.isEmpty()) {
-            return 1;
-        }
-
-        int maxId = 0;
-        for (Lesson l : lessons) {
-            if (l.getId() > maxId) {
-                maxId = l.getId();
-            }
-        }
-
-        return maxId + 1;
+        return result;
     }
 
 }

@@ -1,5 +1,6 @@
 package skillfrog;
 
+import skillfrog.Frames.StudentDashboardFrame;
 import javax.swing.*;
 
 public class Main {
